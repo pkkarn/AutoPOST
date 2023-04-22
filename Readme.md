@@ -28,17 +28,11 @@ AutoPOST is a tool that uses the WordPress API and OpenAI API to automate blog p
 ```py
 wp_user='your_wordpress_username'
 wp_password='your_wordpress_password'
+openai_key='xxx'
+wordpress_url='https://www.example.com'
 ```
 
-
-Replace `'your_wordpress_username'` and `'your_wordpress_password'` with your actual WordPress username and password.
-
-5. Obtain an API key for the OpenAI API and add it to your `.env` file:
-
-`openai_api_key='your_openai_api_key'`
-
-
-Replace `'your_openai_api_key'` with your actual OpenAI API key.
+Replace `'your_wordpress_username'`, `'your_wordpress_password'` with your actual WordPress username and password. And `xxx` with your openai_key. And update `https://www.example.com`
 
 ## Usage
 
@@ -46,7 +40,12 @@ After completing the installation and setup process, you can run the main script
 
 `python app.py`
 
-You can customize the script to generate content based on your specific requirements and post templates.
+And then Enter your Post title:
+
+`How to learn something faster?`
+
+Then it will generate subheading and write html post and then it will post it as a draft at your
+wordpress blog.
 
 ## Support
 

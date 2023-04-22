@@ -9,6 +9,7 @@ load_dotenv()
 # Access the variables using os.environ
 username = os.environ.get('wp_user')
 password = os.environ.get('wp_password')
+wordpress_url = os.environ.get('wordpress_url')
 
 # Combine the username and password with a colon
 credentials = f"{username}:{password}"
@@ -38,7 +39,7 @@ class Post:
     
     @staticmethod
     def get_posts():
-        response = requests.get('https://www.financechit.com/wp-json/wp/v2/posts')
+        response = requests.get(f'{wordpress_url}/wp-json/wp/v2/posts')
         response.raise_for_status()
         return response.json()
     

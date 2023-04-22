@@ -1,14 +1,27 @@
+import sys
+sys.path.insert(0, "./services")
 from services import wp_api
+from services import post_ai
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
+wordpress_url = os.environ.get('wordpress_url')
+
+
+post_title = input("Enter Post Title: ")
+
+response_content = post_ai.writeSequenceArticle(post_title)
+response_tags = post_ai.tags(post_title)
+
 # Set the data for the new post as a dictionary
 post_data = {
-    'title': 'Game of thrones',
-    'content': """
-           Test 3
-    """,
-    'status': 'publish'
+    'title': f'{post_title}',
+    'content': response_content,
+    'status': 'draft',
 }
 
-wp_instance = wp_api.Post('https://www.financechit.com/wp-json/wp/v2/posts')
+wp_instance = wp_api.Post(f'{wordpress_url}/wp-json/wp/v2/posts')
 
 ################################################################################################
 
@@ -20,8 +33,8 @@ for post in wp_instance.get_posts():
 
 # POST Create all post
 
-# created_post = wp_instance.create_post(post_data)
-# print(created_post)
+created_post = wp_instance.create_post(post_data)
+print(created_post)
 
 ################################################################################################
 
